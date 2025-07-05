@@ -11,7 +11,7 @@ import {
   SidebarMenuButton,
   SidebarFooter,
 } from '@/components/ui/sidebar';
-import { Plane, Users, Bot, LineChart } from 'lucide-react';
+import { Plane, Users, Bot, LineChart, Activity, CreditCard, Settings } from 'lucide-react';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 export function AppSidebar() {
@@ -21,7 +21,10 @@ export function AppSidebar() {
     { href: '/', label: 'Dashboard', icon: LineChart },
     { href: '/fleet', label: 'Fleet Management', icon: Plane },
     { href: '/passengers', label: 'Passenger Insights', icon: Users },
+    { href: '/operations', label: 'Operations', icon: Activity, disabled: true },
+    { href: '/finance', label: 'Finance', icon: CreditCard, disabled: true },
     { href: '/reports', label: 'Reports', icon: Bot, disabled: true },
+    { href: '/settings', label: 'Settings', icon: Settings, disabled: true },
   ];
 
   return (
