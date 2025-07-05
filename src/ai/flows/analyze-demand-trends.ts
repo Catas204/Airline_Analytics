@@ -33,6 +33,9 @@ const AnalyzeDemandTrendsOutputSchema = z.object({
   highDemandPeriods: z
     .string()
     .describe('A summary of the periods with the highest demand.'),
+  recommendations: z
+    .string()
+    .describe('Actionable recommendations based on the analysis, such as adjusting prices or adding flights.')
 });
 export type AnalyzeDemandTrendsOutput = z.infer<typeof AnalyzeDemandTrendsOutputSchema>;
 
@@ -44,7 +47,19 @@ const prompt = ai.definePrompt({
   name: 'analyzeDemandTrendsPrompt',
   input: {schema: AnalyzeDemandTrendsInputSchema},
   output: {schema: AnalyzeDemandTrendsOutputSchema},
-  prompt: `You are an expert in analyzing airline booking data.  Your goal is to identify key demand trends and pricing changes from the provided scraped data.\n\nAnalyze the following data:\n\n{{{scrapedData}}}\n\nBased on this data, provide the following:\n\n*  A summary of the key demand trends identified in the data (demandTrends).\n*  An analysis of the pricing changes observed in the data (pricingChanges).\n*  A list of the most popular routes identified in the data (popularRoutes).\n*  A summary of the periods with the highest demand (highDemandPeriods).`,
+  prompt: `You are an expert in analyzing airline booking data. Your goal is to identify key demand trends, pricing changes, and provide actionable recommendations from the provided scraped data.
+
+Analyze the following data:
+
+{{{scrapedData}}}
+
+Based on this data, provide the following:
+
+*  A summary of the key demand trends identified in the data (demandTrends).
+*  An analysis of the pricing changes observed in the data (pricingChanges).
+*  A list of the most popular routes identified in the data (popularRoutes).
+*  A summary of the periods with the highest demand (highDemandPeriods).
+*  Actionable recommendations based on the analysis, such as adjusting prices or adding flights (recommendations).`,
 });
 
 const analyzeDemandTrendsFlow = ai.defineFlow(

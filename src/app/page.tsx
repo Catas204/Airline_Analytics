@@ -7,7 +7,7 @@ import type { Route, PriceTrend } from '@/lib/types';
 // For this demo, we are using mock data to simulate the data scraping process.
 async function getAirDemandData() {
   const mockScrapedData = `
-    Scraped Airline Booking Data:
+    Scraped Airline Booking Data for the last quarter:
     - Route: New York (JFK) to Los Angeles (LAX), Price: $345, Bookings: 150/day, Trend: +5%
     - Route: San Francisco (SFO) to Chicago (ORD), Price: $280, Bookings: 120/day, Trend: -3%
     - Route: Atlanta (ATL) to Orlando (MCO), Price: $150, Bookings: 250/day, Trend: +10%
@@ -15,6 +15,8 @@ async function getAirDemandData() {
     - Route: London (LHR) to New York (JFK), Price: $620, Bookings: 200/day, Trend: +8%
     - Route: Tokyo (HND) to Honolulu (HNL), Price: $850, Bookings: 160/day, Trend: +12% during holidays
     - Route: Seattle (SEA) to Anchorage (ANC), Price: $310, Bookings: 90/day, Trend: -5% off-season
+    - Route: Dubai (DXB) to London (LHR), Price: $710, Bookings: 220/day, Trend: +7%
+    - Route: Singapore (SIN) to Bali (DPS), Price: $250, Bookings: 300/day, Trend: +15%
   `;
 
   const routesData: Route[] = [
@@ -25,6 +27,8 @@ async function getAirDemandData() {
     { id: 5, route: 'London (LHR) - New York (JFK)', searches: 1950, price: 620, trend: 'up' },
     { id: 6, route: 'Tokyo (HND) - Honolulu (HNL)', searches: 1550, price: 850, trend: 'up' },
     { id: 7, route: 'Seattle (SEA) - Anchorage (ANC)', searches: 750, price: 310, trend: 'down' },
+    { id: 8, route: 'Dubai (DXB) - London (LHR)', searches: 2100, price: 710, trend: 'up' },
+    { id: 9, route: 'Singapore (SIN) - Bali (DPS)', searches: 2800, price: 250, trend: 'up' },
   ];
 
   const priceTrendsData: PriceTrend[] = [
@@ -43,6 +47,7 @@ async function getAirDemandData() {
         pricingChanges: 'AI-powered analysis is unavailable.',
         popularRoutes: 'AI-powered analysis is unavailable.',
         highDemandPeriods: 'AI-powered analysis is unavailable. Please configure your Gemini API key in the .env file.',
+        recommendations: 'AI recommendations are unavailable. Please configure your Gemini API key.'
       },
       summary: {
         summary: 'AI-powered summary is unavailable. Please configure your Gemini API key in the .env file to enable this feature.',
@@ -62,7 +67,7 @@ export default async function Home() {
   const { analysis, summary, routesData, priceTrendsData } = await getAirDemandData();
 
   return (
-    <main className="bg-background min-h-screen">
+    <main className="p-4 md:p-8">
       <AirDemandDashboard
         analysis={analysis}
         summary={summary}
