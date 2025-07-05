@@ -31,7 +31,7 @@ export default async function PassengersPage() {
         <main className="p-4 md:p-8">
         <div className="flex flex-col gap-8">
             <div>
-                <h1 className="text-3xl font-bold tracking-tight">Passenger Insights</h1>
+                <h1 className="text-2xl sm:text-3xl font-bold tracking-tight">Passenger Insights</h1>
                 <p className="text-muted-foreground">Understanding your customer demographics and behavior.</p>
             </div>
             <PassengerInsights passengerData={passengerData} bookingBehavior={bookingBehavior} />

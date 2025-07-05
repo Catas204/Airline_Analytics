@@ -67,7 +67,7 @@ export function PopularRoutesTable({ data }: PopularRoutesTableProps) {
             <TableHeader>
               <TableRow>
                 <TableHead className="w-[40%]">Route</TableHead>
-                <TableHead className="text-right">Searches</TableHead>
+                <TableHead className="hidden sm:table-cell text-right">Searches</TableHead>
                 <TableHead className="text-right">Avg. Price</TableHead>
                 <TableHead className="text-center">Trend</TableHead>
               </TableRow>
@@ -77,7 +77,7 @@ export function PopularRoutesTable({ data }: PopularRoutesTableProps) {
                 filteredData.map((item) => (
                   <TableRow key={item.id}>
                     <TableCell className="font-medium">{item.route}</TableCell>
-                    <TableCell className="text-right">{item.searches.toLocaleString()}</TableCell>
+                    <TableCell className="hidden sm:table-cell text-right">{item.searches.toLocaleString()}</TableCell>
                     <TableCell className="text-right">
                       <Badge variant="secondary">${item.price}</Badge>
                     </TableCell>

@@ -83,28 +83,30 @@ export function PassengerInsights({ passengerData, bookingBehavior }: PassengerI
                     <CardDescription>List of high-value passengers.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <Table>
-                        <TableHeader>
-                            <TableRow>
-                                <TableHead>Name</TableHead>
-                                <TableHead>Age Group</TableHead>
-                                <TableHead>Loyalty Tier</TableHead>
-                                <TableHead className="text-right">Total Spent</TableHead>
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {passengerData.sort((a, b) => b.totalSpent - a.totalSpent).map((p) => (
-                                <TableRow key={p.name}>
-                                    <TableCell className="font-medium">{p.name}</TableCell>
-                                    <TableCell>{p.ageGroup}</TableCell>
-                                    <TableCell>
-                                        <Badge variant={p.loyaltyTier === 'Gold' ? 'default' : p.loyaltyTier === 'None' ? 'outline' : 'secondary'}>{p.loyaltyTier}</Badge>
-                                    </TableCell>
-                                    <TableCell className="text-right">${p.totalSpent.toLocaleString()}</TableCell>
+                    <div className="overflow-x-auto">
+                        <Table>
+                            <TableHeader>
+                                <TableRow>
+                                    <TableHead>Name</TableHead>
+                                    <TableHead className="hidden sm:table-cell">Age Group</TableHead>
+                                    <TableHead>Loyalty Tier</TableHead>
+                                    <TableHead className="text-right">Total Spent</TableHead>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
+                            </TableHeader>
+                            <TableBody>
+                                {passengerData.sort((a, b) => b.totalSpent - a.totalSpent).map((p) => (
+                                    <TableRow key={p.name}>
+                                        <TableCell className="font-medium">{p.name}</TableCell>
+                                        <TableCell className="hidden sm:table-cell">{p.ageGroup}</TableCell>
+                                        <TableCell>
+                                            <Badge variant={p.loyaltyTier === 'Gold' ? 'default' : p.loyaltyTier === 'None' ? 'outline' : 'secondary'}>{p.loyaltyTier}</Badge>
+                                        </TableCell>
+                                        <TableCell className="text-right">${p.totalSpent.toLocaleString()}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </div>
                 </CardContent>
             </Card>
         </div>

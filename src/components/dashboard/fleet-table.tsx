@@ -49,9 +49,9 @@ export function FleetTable({ data }: FleetTableProps) {
                 <TableHead>ID / Tail Number</TableHead>
                 <TableHead>Model</TableHead>
                 <TableHead>Status</TableHead>
-                <TableHead>Location</TableHead>
-                <TableHead className="text-right">Capacity</TableHead>
-                <TableHead className="text-right">Age (years)</TableHead>
+                <TableHead className="hidden md:table-cell">Location</TableHead>
+                <TableHead className="hidden md:table-cell text-right">Capacity</TableHead>
+                <TableHead className="hidden md:table-cell text-right">Age (years)</TableHead>
                 <TableHead><span className="sr-only">Actions</span></TableHead>
               </TableRow>
             </TableHeader>
@@ -63,9 +63,9 @@ export function FleetTable({ data }: FleetTableProps) {
                   <TableCell>
                     <Badge variant={statusVariant[aircraft.status]}>{aircraft.status}</Badge>
                   </TableCell>
-                  <TableCell>{aircraft.location}</TableCell>
-                  <TableCell className="text-right">{aircraft.capacity}</TableCell>
-                  <TableCell className="text-right">{aircraft.age}</TableCell>
+                  <TableCell className="hidden md:table-cell">{aircraft.location}</TableCell>
+                  <TableCell className="hidden md:table-cell text-right">{aircraft.capacity}</TableCell>
+                  <TableCell className="hidden md:table-cell text-right">{aircraft.age}</TableCell>
                   <TableCell>
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
